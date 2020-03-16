@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/configurations"
+        android:title="Configurations"
+        android:icon="@drawable/ic_configuration"/>
+<item
+    android:id="@+id/rotations"
+    android:title="Rotation"
+    android:icon="@drawable/ic_rotations"/>
+
+    <item
+        android:id="@+id/evacuation"
+        android:title="Evacuation"
+        android:icon="@drawable/ic_evacuation"/>
+</menu>

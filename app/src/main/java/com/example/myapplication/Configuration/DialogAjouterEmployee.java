@@ -43,13 +43,12 @@ public class DialogAjouterEmployee extends AppCompatDialogFragment {
         }).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                //Ici on devrait créer un objet d'employee qui aura un nom et quart de travail et mettre dans un arraY?
                 String nom=editTextNom.getText().toString();
                 String heuresTravail=spinnerHeuresTravail.getSelectedItem().toString();
 
                 ((ConfigurationActivity)getActivity()).updateRecyclerView(nom,heuresTravail);
-                //configurationActivity.updateRecyclerView(nom, heuresTravail);
 
-                //Implémenter l'ajout d'un employee dans un cardview
             }
         });
 
@@ -60,9 +59,6 @@ public class DialogAjouterEmployee extends AppCompatDialogFragment {
         return builder.create();
     }
 
-    public interface DialogListener{
-
-    }
 
     public void initSpinner(View view) {
         spinnerHeuresTravail = view.findViewById(R.id.spinner_heures_travail);

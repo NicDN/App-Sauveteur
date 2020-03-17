@@ -8,13 +8,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:theme="@style/AppTheme">
         <activity android:name=".Configuration.SelectionDesPostesActivity" />
         <activity
             android:name=".Configuration.ConfigurationActivity"
             android:launchMode="singleInstance"/>
-        <activity android:name=".Evacuation.Evacuation" />
-        <activity android:name=".Rotations.MainActivity">
+        <activity
+            android:name=".Evacuation.Evacuation"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name=".Rotations.MainActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

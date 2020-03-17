@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -31,22 +32,31 @@ public class ConfigurationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuration);
+        //Enlever le titre à action bar
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         buttonSelectionEmployee=findViewById(R.id.button_ajouterEmployee);
 
-        //Init du recycler view
-        selectionEmployeeArraList=new ArrayList<>();
-        selectionEmployeeArraList.add(new ItemSelectionEmployee(R.drawable.ic_employee,"Nicolas","10:00 à 18:30"));
-        recyclerViewSelectionEmployee=findViewById(R.id.recyclerView_quartsTravail);
-        layoutManager=new LinearLayoutManager(this);
-        adapter=new SelectionEmployeeAdapter(selectionEmployeeArraList);
-        recyclerViewSelectionEmployee.setLayoutManager(layoutManager);
-        recyclerViewSelectionEmployee.setAdapter(adapter);
-
-
+        initRecyclerView();
         initBarreNavigation();
         initListenerButton();
-//        recyclerView();
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_next,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id=item.getItemId();
+        if(id==R.id.button_next){
+            Intent intent=new Intent(this, SelectionDesPostesActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void initListenerButton() {
@@ -89,10 +99,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         });
     }
 
-    private void ouvrirSelectionDesPostesActivity(){
-        Intent intent=new Intent(this, SelectionDesPostesActivity.class);
-        startActivity(intent);
-    }
+
 
     private void openDialog(){
         DialogAjouterEmployee dialog=new DialogAjouterEmployee(this);
@@ -102,5 +109,14 @@ public class ConfigurationActivity extends AppCompatActivity {
     public void updateRecyclerView(String nom, String heuresTravail) {
         selectionEmployeeArraList.add(new ItemSelectionEmployee(R.drawable.ic_employee,nom,heuresTravail));
         adapter.notifyDataSetChanged();
+    }
+
+    public void initRecyclerView(){
+        selectionEmployeeArraList=new ArrayList<>();
+        recyclerViewSelectionEmployee=findViewById(R.id.recyclerView_quartsTravail);
+        layoutManager=new LinearLayoutManager(this);
+        adapter=new SelectionEmployeeAdapter(selectionEmployeeArraList);
+        recyclerViewSelectionEmployee.setLayoutManager(layoutManager);
+        recyclerViewSelectionEmployee.setAdapter(adapter);
     }
 }

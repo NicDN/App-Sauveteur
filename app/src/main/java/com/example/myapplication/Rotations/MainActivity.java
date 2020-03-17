@@ -4,9 +4,11 @@ package com.example.myapplication.Rotations;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.myapplication.Configuration.ConfigurationActivity;
 import com.example.myapplication.Evacuation.Evacuation;
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initialisationBarreNavigation();
-
+        initViewPagerRotations();
     }
 
     private void initialisationBarreNavigation() {
@@ -52,5 +54,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void initViewPagerRotations(){
+        ViewPager viewPagerRotations=(ViewPager)findViewById(R.id.viewPage_rotations);
+        viewPagerRotations.setOffscreenPageLimit(1);
+        SwipeRotationsAdapter swipeRotationsAdapter=new SwipeRotationsAdapter(getSupportFragmentManager());
+        viewPagerRotations.setAdapter(swipeRotationsAdapter);
+        viewPagerRotations.setCurrentItem(0);
     }
 }

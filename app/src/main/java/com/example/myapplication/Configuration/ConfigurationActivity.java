@@ -25,6 +25,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     private RecyclerView recyclerViewSelectionEmployee;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+    public ArrayList<ItemSelectionEmployee> selectionEmployeeArraList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +34,19 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         buttonSelectionEmployee=findViewById(R.id.button_ajouterEmployee);
 
+        //Init du recycler view
+        selectionEmployeeArraList=new ArrayList<>();
+        selectionEmployeeArraList.add(new ItemSelectionEmployee(R.drawable.ic_employee,"Nicolas","10:00 à 18:30"));
+        recyclerViewSelectionEmployee=findViewById(R.id.recyclerView_quartsTravail);
+        layoutManager=new LinearLayoutManager(this);
+        adapter=new SelectionEmployeeAdapter(selectionEmployeeArraList);
+        recyclerViewSelectionEmployee.setLayoutManager(layoutManager);
+        recyclerViewSelectionEmployee.setAdapter(adapter);
+
 
         initBarreNavigation();
         initListenerButton();
-        recyclerView();
+//        recyclerView();
     }
 
     private void initListenerButton() {
@@ -46,22 +56,6 @@ public class ConfigurationActivity extends AppCompatActivity {
                 openDialog();
             }
         });
-    }
-
-    private void recyclerView() {
-        ArrayList<ItemSelectionEmployee> selectionEmployeeArraList=new ArrayList<>();
-
-        //C'est ici qu'on ajoute les employées à la journée
-        selectionEmployeeArraList.add(new ItemSelectionEmployee(R.drawable.ic_employee,"Nicolas","10:00 à 18:30"));
-        selectionEmployeeArraList.add(new ItemSelectionEmployee(R.drawable.ic_employee,"Andrew","10:00 à 20:15"));
-        selectionEmployeeArraList.add(new ItemSelectionEmployee(R.drawable.ic_employee,"Pierre","10:00 à 18:30"));
-
-        recyclerViewSelectionEmployee=findViewById(R.id.recyclerView_quartsTravail);
-        layoutManager=new LinearLayoutManager(this);
-        adapter=new SelectionEmployeeAdapter(selectionEmployeeArraList);
-
-        recyclerViewSelectionEmployee.setLayoutManager(layoutManager);
-        recyclerViewSelectionEmployee.setAdapter(adapter);
     }
 
 
@@ -103,5 +97,10 @@ public class ConfigurationActivity extends AppCompatActivity {
     private void openDialog(){
         DialogAjouterEmployee dialog=new DialogAjouterEmployee(this);
         dialog.show(getSupportFragmentManager(),"dialog");
+    }
+
+    public void updateRecyclerView(String nom, String heuresTravail) {
+        selectionEmployeeArraList.add(new ItemSelectionEmployee(R.drawable.ic_employee,nom,heuresTravail));
+        adapter.notifyDataSetChanged();
     }
 }

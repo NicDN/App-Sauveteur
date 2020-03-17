@@ -10,7 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".Configuration.SelectionDesPostesActivity" />
-        <activity android:name=".Configuration.ConfigurationActivity" />
+        <activity
+            android:name=".Configuration.ConfigurationActivity"
+            android:launchMode="singleInstance"/>
         <activity android:name=".Evacuation.Evacuation" />
         <activity android:name=".Rotations.MainActivity">
             <intent-filter>

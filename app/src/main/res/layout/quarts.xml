@@ -3,28 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="1dp"
-    android:layout_margin="3dp">
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginBottom="8dp"
+    android:padding="1dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white">
+
         <ImageView
+            android:id="@+id/imageEmployee"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:padding="2dp"
-            android:id="@+id/imageEmployee"/>
+            android:padding="2dp" />
 
         <TextView
             android:id="@+id/txtViewNom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/imageEmployee"
             android:text="Nom"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_toEndOf="@+id/imageEmployee"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtViewHeureTravail"
@@ -32,11 +36,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtViewNom"
             android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/imageEmployee"
             android:text="Heures de travail"
             android:textColor="@android:color/black"
             android:textSize="15sp"
-            android:textStyle="bold"
-            android:layout_toEndOf="@+id/imageEmployee"/>
+            android:textStyle="bold" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
